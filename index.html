@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pleasantview</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <main>
+        <div class="bigbox menu">
+            <div id="menu">
+                <a href="#title">Title</a>
+                <a href="#content">Overview of Town</a>
+                <a href="#playable">Playable Households</a>
+                <a href="#web">Initial Web of Love</a>
+                <a href="#footer">Links</a>
+            </div>
+
+            <div id="menuMobile">
+            <i class="fa-solid fa-bars"></i>   
+            <i class="fa-solid fa-x" style="display:none;"></i>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#title">Title</a>
+            <a href="#content">Overview of Town</a>
+            <a href="#playable">Playable Households</a>
+            <a href="#web">Initial Web of Love</a>
+            <a href="#footer">Links</a>
+        </div>
+
+        <div id="title"></div>
+        <div class="bigbox title" id="cyan">
+            <div id="text">
+                <h1>Sims 2 Pleasantview</h1>
+                <p>A lot has happened in 25 years, but some new faces in town are stirring up rivalries and creating tension for the once happy families. Can anything be done to get the neighborhood feeling good again?</p>
+                <div id="email">
+                    <p id="left">test@email.com</p>
+                    <p id="right">Submit</p>
+                </div>
+            </div>
+            <div id="picture">
+                <img src="https://raw.githubusercontent.com/queerincubus/households.json/main/Pleasantview_Overview.png" alt="Title Screen Picture of All Pleasantview Families">
+            </div>
+        </div>
+
+        <div class="bigbox content" id="content">
+            <div>
+                <h1>Pleasantview from the perspective of the cliff before the bridge</h1>
+                <img src="https://raw.githubusercontent.com/queerincubus/households.json/main/Pleasantview_Map.png" alt="Airplane View of Pleasantview">
+            </div>
+        </div>
+
+        <div class="bigbox playable" id="cyan">
+            <h2>Playable Households</h2>
+            <div id="playable">
+                    
+            </div>
+        </div>
+
+        <div class="bigbox web" id="web">
+            <h2>Initial Web of Love</h2>
+            <img src="https://raw.githubusercontent.com/queerincubus/households.json/main//Pleasantview_Web.png" alt="Initial Web of Love Between All Pleasantview Adults">
+        </div>
+
+        <div class="bigbox footer" id="cyan">
+            <div id="footer">
+                <div id="links">
+                    <a href="#title">Title</a>
+                    <a href="#content">Overview of Town</a>
+                    <a href="#playable">Playable Households</a>
+                    <a href="#web">Initial Web of Love</a>
+                    <a href="#footer">Links</a>
+                </div>
+                <div id="socials">
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-twitch"></i>
+                </div>
+                <p>© Copyright 2026 Shay Sample - All Rights Reserved</p>
+            </div>
+        </div>
+
+    </main>
+    <style>
+        :root {
+            --white: #FAF9F6;
+            --cyan: #bbfcff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--white);
+            margin: 0px;
+            width: 100%;
+            font-family: 'Inter Tight', sans-serif;
+        }
+
+        h1 {
+            font-size: 70px;
+        }
+
+        h2 {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            font-size: 18px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            border-radius: 40px;
+        }
+
+        #cyan {
+            background-color: var(--cyan);
+        }
+
+        .bigbox {
+            display: grid;
+            grid-template-areas:
+                "menu"
+                "title"
+                "content"
+                "playable"
+                "web"
+                "footer";
+            grid-template-rows: auto;
+        }
+
+        .menu {
+            grid-area: menu;
+            display: inline-flex;
+            width: 100%;
+            padding: 20px;
+            border-radius: 40px;
+            border-width: 10px;
+            border-color: var(--white);
+            border-style: solid;
+            position: fixed;
+            opacity: 0.9;
+            background-color: var(--white);
+        }
+
+        #menuMobile {
+            display: none;
+        }
+
+        .dropdown {
+            display: none;
+        }
+
+        .title {
+            grid-area: title;
+            padding-top: 70px;
+            display: flex;
+            padding: 20px;
+            justify-content: center;
+        }
+
+            .title div {
+                
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+            }
+
+        #text {
+            margin-top: 20px;
+        }
+
+        #email {
+            display: flex;
+            flex-direction: row;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        #left {
+            border-radius: 40px;
+            border-width: 2px;
+            background-color: var(--white);
+            width: 40%;
+            margin-right: 20px;
+            padding: 20px;
+        }
+
+        #right {
+            border-radius: 40px;
+            border-width: 2px;
+            background-color: black;
+            color: var(--white);
+            width: 20%;
+            padding: 20px;
+        }
+
+
+        #picture {
+            padding: 20px;
+            margin: 20px;
+            margin-top: 50px;
+        }
+
+        .content {
+            grid-area: content;
+            text-align: center;
+            margin: 100px;
+            padding: 100px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+            .content img {
+                width: 100%;
+            }
+
+
+        .playable {
+            grid-area: playable;
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
+
+        #playable {
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            justify-content: flex-start;
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 20px;
+            width: 250px;
+        }
+
+            .card img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+
+        .card button {
+            justify-content: center;
+        }
+
+	.card:hover {
+		transform: scale(1.05);
+		transition: 0.3s;
+	}
+
+        .web {
+            grid-area: web;
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+            margin: 100px;
+            padding: 100px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        
+        .web img {
+            width: 90%;
+        }
+
+        .footer {
+            grid-area: footer;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 60px;
+        }
+
+            .footer p {
+                padding-top: 30px;
+            }
+
+        #links {
+            margin-top: 100px;
+            margin-bottom: 50px;
+
+        }
+
+            #links a {
+                font-size: 30px;
+               margin: 20px;
+            }
+
+        #socials {
+            display: flex;
+            justify-content: center;
+        }
+
+        .fa-brands {
+            display: flex;
+            background-color: var(--white);
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            width: 75px;
+            height: 75px;
+            margin: 10px;
+        }
+
+        @media only screen and (max-width: 800px) {
+            body {
+                margin: 0px;
+                width: 100%;
+                padding: 0px;
+            }
+
+            .bigbox {
+                grid-template-areas:
+                    "menu"
+                    "dropdown"
+                    "title"
+                    "content"
+                    "playable"
+                    "web"
+                    "footer";
+                grid-template-rows: auto;
+            }
+
+            .menu {
+                width: 100%;
+                box-sizing: border-box;
+                
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            #menu {
+                content-visibility: hidden;
+            }
+
+            .fa-x {
+                display: none;
+            }
+
+            #menuMobile {
+                display: unset;
+            }
+
+
+            .fa-solid {
+                width: 30px;
+                border: hidden;
+            }
+
+            .dropdown.active {
+                display: inline-flex;
+                width: 100%;
+                padding: 25px;
+                box-sizing: border-box;
+                border-radius: 40px;
+                border-color: var(--white);
+                border-style: solid;
+                position: fixed;
+                opacity: 0.9;
+                background-color: var(--white);
+                margin-top: 85px;
+                flex-direction: column;
+                row-gap: 10px;
+            }
+
+            .title {
+                flex-direction: column;
+                padding: 0px;
+                text-align: center;
+                margin: 0px;
+
+            }
+
+                .title p {
+                    width: 100%;
+                }
+
+            #text {
+                margin-top: 40px;
+                
+            }
+
+            #email {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #left {
+                width: 90%;
+            }
+
+            #right {
+                margin-top: 20px;
+            }
+
+            #picture {
+                margin: 0px;
+                justify-content: center;
+            }
+
+            #picture img {
+                
+                padding: 0px;
+                width: 100%;
+            }
+
+            .content {
+                padding: 0px;
+                padding-top: 40px;
+                margin: 0px;
+            }
+
+                .content img {
+                    margin-bottom: 100px;
+                    
+                }
+
+            #playable {
+                display: auto;
+            }
+
+            .playable img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .card {
+                width: 90%;
+                max-width: 250px;
+                }
+
+            .web {
+                padding: 0px;
+                margin: 10px;
+            }
+
+                .web h2 {
+                    padding-bottom: 10px;
+                }
+
+                .web img {
+                    width: 100%;
+                    margin-bottom: 80px;
+                }
+
+            .fa-brands {
+                align-content: center;
+            }
+        }
+    </style>
+    <script>
+        const hamburger = document.querySelector(".fa-bars");
+        const cross = document.querySelector(".fa-x");
+        const dropdown = document.querySelector(".dropdown");
+        const youtube = document.querySelector(".fa-youtube");
+        const twitch = document.querySelector(".fa-twitch");
+
+        hamburger.addEventListener("click", () => {
+            if (window.innerWidth <= 800) {
+                dropdown.classList.add("active");
+                hamburger.style.display = "none";
+                cross.style.display = "block";
+            }
+        });
+
+        cross.addEventListener("click", () => {
+            dropdown.classList.remove("active");
+            cross.style.display = "none";
+            hamburger.style.display = "block";
+        });
+
+        youtube.addEventListener("click", () => {
+            window.open('https://www.youtube.com/@shay_sinclair', '_blank');
+        })
+
+        twitch.addEventListener("click", () => {
+            window.open('https://www.twitch.tv/queerincubus', '_blank')
+        })
+
+        window.addEventListener("DOMContentLoaded", fetchData);
+        async function fetchData() {
+            try {
+                //const response = await fetch("https://raw.githubusercontent.com/queerincubus/households.json/main/households.json");
+		const response = await fetch("/api");
+                const data = await response.json();
+
+                const container = document.getElementById("playable");
+
+                for (const name in data) {
+                    const item = data[name];
+
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+
+                    card.innerHTML = `
+                <h3>${name}</h3>
+                <img src="${item.image}" alt="${name}">
+                <p>${item.description || ""}</p>
+                <p><strong>Members:</strong> ${item.members.join(", ")}</p>
+                <p><strong>Money:</strong> $${item.money}</p>
+                <p><strong>Theme:</strong> ${item.theme || "N/A"}</p>
+                <button>${item.active ? "Buy Now" : "Not Available"}</button>
+            `;
+
+                    container.appendChild(card);
+                }
+
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        }
+        
+    </script>
+</body>
+</html >
