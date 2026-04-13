@@ -5,9 +5,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const householdSchema = new mongoose.Schema({}, { strict: false });
+
 const Household = mongoose.model(
   "Household",
-  new mongoose.Schema({}, { strict: false }),
+  householdSchema,
   "householdsCollection"
 );
 // connect first
