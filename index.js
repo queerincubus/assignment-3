@@ -1,3 +1,5 @@
+// https://assignment-3-6uyf.onrender.com/
+
 const http = require("http");
 const mongoose = require("mongoose");
 const fs = require("fs");
@@ -18,7 +20,6 @@ mongoose.connect(process.env.MONGO_URI)
 
     const server = http.createServer(async (req, res) => {
 
-      // ===== HOME PAGE (serve index.html) =====
       if (req.url === "/" && req.method === "GET") {
         const filePath = path.join(__dirname, "index.html");
 
@@ -34,7 +35,6 @@ mongoose.connect(process.env.MONGO_URI)
         return;
       }
 
-      // ===== API ROUTE =====
       if (req.url === "/api" && req.method === "GET") {
         try {
           const data = await Household.find({}).lean();
@@ -48,7 +48,6 @@ mongoose.connect(process.env.MONGO_URI)
         }
       }
 
-      // ===== 404 =====
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.end("Route not found");
     });
