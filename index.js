@@ -27,19 +27,21 @@ mongoose.connect(process.env.MONGO_URI)
 
       // API route
       if (req.url === "/api" && req.method === "GET") {
-        try {
-          const data = await Household.find();
+  try {
+    const data = await Household.find();
 
-          res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, { "Content-Type": "application/json" });
 
-          // return all data safely (or first item if you want)
-          return res.end(JSON.stringify(data));
+    return res.end(JSON.stringify({
+      count: data.length,
+      data: data
+    }));
 
-        } catch (err) {
-          res.writeHead(500, { "Content-Type": "application/json" });
-          return res.end(JSON.stringify({ error: err.message }));
-        }
-      }
+  } catch (err) {
+    res.writeHead(500, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ error: err.message }));
+  }
+}
 
       // 404 fallback
       res.writeHead(404, { "Content-Type": "text/plain" });
