@@ -40,10 +40,7 @@ mongoose.connect(process.env.MONGO_URI)
           const data = await Household.find({}).lean();
 
           res.writeHead(200, { "Content-Type": "application/json" });
-          return res.end(JSON.stringify({
-            count: data.length,
-            data: data
-          }));
+          return res.end(JSON.stringify(data));
 
         } catch (err) {
           res.writeHead(500, { "Content-Type": "application/json" });
