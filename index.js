@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const householdSchema = new mongoose.Schema({}, { strict: false });
-const Household = mongoose.model("Household", householdSchema);
+const Household = mongoose.model("household", householdSchema);
 
 // connect first
 mongoose.connect(process.env.MONGO_URI)
