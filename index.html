@@ -510,34 +510,36 @@
         async function fetchData() {
             try {
                 //const response = await fetch("https://raw.githubusercontent.com/queerincubus/households.json/main/households.json");
-		const response = await fetch("/api");
-                const data = await response.json();
+		async function fetchData() {
+    try {
+        const response = await fetch("/api");
+        const result = await response.json();
 
-                const container = document.getElementById("playable");
+        const container = document.getElementById("playable");
 
-                for (const name in data) {
-                    const item = data[name];
+        // IMPORTANT: use result.data (MongoDB array)
+        for (const item of result.data) {
 
-                    const card = document.createElement("div");
-                    card.classList.add("card");
+            const card = document.createElement("div");
+            card.classList.add("card");
 
-                    card.innerHTML = `
-                <h3>${name}</h3>
-                <img src="${item.image}" alt="${name}">
+            card.innerHTML = `
+                <h3>${item.name || "No Name"}</h3>
+                <img src="${item.image}" alt="${item.name}">
                 <p>${item.description || ""}</p>
-                <p><strong>Members:</strong> ${item.members.join(", ")}</p>
-                <p><strong>Money:</strong> $${item.money}</p>
+                <p><strong>Members:</strong> ${(item.members || []).join(", ")}</p>
+                <p><strong>Money:</strong> $${item.money || 0}</p>
                 <p><strong>Theme:</strong> ${item.theme || "N/A"}</p>
                 <button>${item.active ? "Buy Now" : "Not Available"}</button>
             `;
 
-                    container.appendChild(card);
-                }
-
-            } catch (error) {
-                console.log("Error:", error);
-            }
+            container.appendChild(card);
         }
+
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
         
     </script>
 </body>
