@@ -1,53 +1,57 @@
 const http = require("http");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
-// Schema (keeps flexibility for Assignment 2 → 3 migration)
 const householdSchema = new mongoose.Schema({}, { strict: false });
 
-// IMPORTANT: Make sure collection name matches MongoDB exactly
 const Household = mongoose.model(
   "Household",
   householdSchema,
   "householdsCollection"
 );
 
-// Better MongoDB connection handling
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
 
     const server = http.createServer(async (req, res) => {
 
-      // Allow CORS (helps debugging on Render/browser)
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Content-Type", "application/json");
-
-      // Home route
+      // ===== HOME PAGE (serve index.html) =====
       if (req.url === "/" && req.method === "GET") {
-        res.writeHead(200, { "Content-Type": "text/plain" });
-        return res.end("Organization website is running");
+        const filePath = path.join(__dirname, "index.html");
+
+        fs.readFile(filePath, (err, content) => {
+          if (err) {
+            res.writeHead(500);
+            return res.end("Error loading index.html");
+          }
+
+          res.writeHead(200, { "Content-Type": "text/html" });
+          res.end(content);
+        });
+        return;
       }
 
-      // API route (handles /api and /api/)
-      if ((req.url === "/api" || req.url === "/api/") && req.method === "GET") {
+      // ===== API ROUTE =====
+      if (req.url === "/api" && req.method === "GET") {
         try {
-          // .lean() ensures clean JSON output INCLUDING _id
           const data = await Household.find({}).lean();
 
-          return res.writeHead(200).end(JSON.stringify({
+          res.writeHead(200, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify({
             count: data.length,
             data: data
           }));
 
         } catch (err) {
-          return res.writeHead(500).end(JSON.stringify({
-            error: err.message
-          }));
+          res.writeHead(500, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify({ error: err.message }));
         }
       }
 
-      // 404 fallback
+      // ===== 404 =====
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.end("Route not found");
     });
@@ -59,6 +63,4 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
   })
-  .catch(err => {
-    console.error("MongoDB connection failed:", err.message);
-  });
+  .catch(err => console.error(err));
