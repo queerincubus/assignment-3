@@ -25,17 +25,20 @@ mongoose.connect(process.env.MONGO_URI)
       }
 
       else if (req.url === "/api" && req.method === "GET") {
-        try {
-          const data = await Household.find();
+  try {
+    const data = await Household.find();
 
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(data));
+    // get the single document
+    const doc = data[0];
 
-        } catch (err) {
-          res.writeHead(500, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: err.message }));
-        }
-      }
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(doc));
+
+  } catch (err) {
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: err.message }));
+  }
+}
 
       else {
         res.writeHead(404);
