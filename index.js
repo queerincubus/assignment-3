@@ -1,9 +1,8 @@
-// YOUR DEPLOYED URL: https://your-app-url.com
-
 const http = require("http");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+// Schema
 const householdSchema = new mongoose.Schema({}, { strict: false });
 
 const Household = mongoose.model(
@@ -11,48 +10,50 @@ const Household = mongoose.model(
   householdSchema,
   "householdsCollection"
 );
-// connect first
+
+// Connect MongoDB first
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
 
-    // start server ONLY after DB connects
+    // Create server AFTER DB connects
     const server = http.createServer(async (req, res) => {
 
+      // Home route
       if (req.url === "/" && req.method === "GET") {
         res.writeHead(200, { "Content-Type": "text/plain" });
-        res.end("Organization website is running");
+        return res.end("Organization website is running");
       }
 
-      else if (req.url === "/api" && req.method === "GET") {
-  try {
-    const data = await Household.find();
+      // API route
+      if (req.url === "/api" && req.method === "GET") {
+        try {
+          const data = await Household.find();
 
-    // get the single document
-    const doc = data[0];
+          res.writeHead(200, { "Content-Type": "application/json" });
 
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(doc));
+          // return all data safely (or first item if you want)
+          return res.end(JSON.stringify(data));
 
-  } catch (err) {
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ error: err.message }));
-  }
-}
-
-      else {
-        res.writeHead(404);
-        res.end("Not found");
+        } catch (err) {
+          res.writeHead(500, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify({ error: err.message }));
+        }
       }
 
+      // 404 fallback
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Route not found");
     });
 
+    // IMPORTANT for Render
     const PORT = process.env.PORT || 3000;
-    server.listen(PORT, () => {
+
+    server.listen(PORT, "0.0.0.0", () => {
       console.log("Server running on port " + PORT);
     });
 
   })
   .catch(err => {
-    console.log("MongoDB connection failed:", err);
+    console.error("MongoDB connection failed:", err);
   });
