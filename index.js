@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI)
       }
 
       // API route
-      if (req.url === "/api" && req.method === "GET") {
+      else if (req.url === "/api" && req.method === "GET") {
   try {
     const data = await Household.find();
 
